@@ -420,7 +420,7 @@ const guideSteps = [
     type: "urine",
 
     text:
-      "Follow the strip manufacturer's instructions for dipping and reading the urine strip.",
+      "Dip the urine glucose strip once briefly, remove it, and wait 2 minutes before reading the result.",
 
     bullets: [
 
@@ -430,11 +430,15 @@ const guideSteps = [
 
       "Avoid touching the inside of the container.",
 
-      "Collect the urine sample and use the strip according to its instructions.",
+      "Collect the urine sample.",
 
-      "Do not soak the strip longer than instructed.",
+      "Dip the urine glucose strip into the urine once, briefly.",
 
-      "Remove excess urine as directed and wait the specified reading time.",
+      "Do not leave the strip in the urine for more than 5 seconds.",
+
+      "Remove the strip and allow excess urine to drain off.",
+
+      "Wait 2 minutes for the result to develop.",
 
       "Compare the strip with the colour legend."
 
