@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>ABEEM — Diabetes Risk Screening</title>
+
+  <link rel="stylesheet" href="./styles1.css" />
+>
+
+</head>
+
+<body>
+
+  <div class="app-shell">
+
+    <!-- =========================
+         LANDING PAGE
+    ========================== -->
+    <section id="landingPage" class="page active">
+
+      <div class="hero">
+
+        <img src="logo.png" alt="ABEEM Logo" class="logo" />
+
+        <h1>ABEEM</h1>
+
+        <p class="tagline">
+          Make the risk visible.
+        </p>
+
+        <p class="intro-text">
+          Awareness-Based Early Evaluation and Management of Diabetes
+        </p>
+
+        <div class="landing-card">
+
+          <h2>Diabetes Risk Screening</h2>
+
+          <p>
+            ABEEM is a first-level screening and awareness system.
+            It does not diagnose diabetes.
+          </p>
+
+          <button
+            class="primary-button"
+            type="button"
+            onclick="showModePage()"
+          >
+            Start Screening
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         MODE PAGE
+    ========================== -->
+    <section id="modePage" class="page">
+
+      <div class="page-card">
+
+        <h1>Choose Screening Mode</h1>
+
+        <p class="page-description">
+          Select how the screening will be carried out.
+        </p>
+
+        <div class="mode-grid">
+
+          <button
+            class="mode-card"
+            type="button"
+            onclick="startDIY()"
+          >
+            <span class="mode-icon">🏠</span>
+
+            <strong>DIY / Home</strong>
+
+            <small>
+              For an individual carrying out the screening at home.
+            </small>
+          </button>
+
+
+          <button
+            class="mode-card"
+            type="button"
+            onclick="startVolunteer()"
+          >
+            <span class="mode-icon">🧑‍⚕️</span>
+
+            <strong>Volunteer / Camp</strong>
+
+            <small>
+              For screening carried out by a trained volunteer.
+            </small>
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         DIY BOOK COVER
+    ========================== -->
+    <section id="bookCoverPage" class="page">
+
+      <div class="book-wrapper">
+
+        <div class="book-cover">
+
+          <img src="logo.png" alt="ABEEM Logo" class="book-logo" />
+
+          <h1>ABEEM</h1>
+
+          <p>
+            Your guide to diabetes risk screening
+          </p>
+
+          <button
+            class="book-start-button"
+            type="button"
+            onclick="openGuideBook()"
+          >
+            Open the guide →
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         DIY GUIDE BOOK
+    ========================== -->
+    <section id="guideBookPage" class="page">
+      <div class="guide-book-shell">
+
+        <div class="guide-book" id="guideBook">
+          <div class="guide-spread" id="guideSpread">
+            <article class="guide-book-page">
+              <div id="guideLeftPage"></div>
+            </article>
+            <article class="guide-book-page">
+              <div id="guideRightPage"></div>
+            </article>
+          </div>
+        </div>
+
+        <div class="guide-book-controls">
+          <button id="guideBackButton" class="secondary-button hidden" type="button" onclick="previousGuideStep()">← Previous</button>
+          <div id="guideProgress" class="guide-book-progress">Page 1 of 3</div>
+          <button id="guideNextButton" class="primary-button" type="button" onclick="nextGuideStep()">Next page →</button>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================
+         DIY MEASURE
+    ========================== -->
+    <section id="measurePage" class="page">
+      <div class="page-card">
+        <span class="section-label">Screening Guide</span>
+        <h1>Record Your Measurements</h1>
+        <p class="page-description">The waist and hip measurements you enter here will be carried forward automatically to the questionnaire.</p>
+
+        <div class="form-group">
+          <label for="waist">Waist circumference (cm)</label>
+          <input id="waist" type="number" min="1" step="0.1" placeholder="Enter waist" />
+        </div>
+
+        <div class="form-group">
+          <label for="hip">Hip circumference (cm)</label>
+          <input id="hip" type="number" min="1" step="0.1" placeholder="Enter hip" />
+        </div>
+
+        <div class="calculated-box">
+          <span>Calculated WHR</span>
+          <strong id="whrDisplay">—</strong>
+          <small>Waist ÷ Hip</small>
+        </div>
+
+        <button class="primary-button" type="button" onclick="submitDIYMeasure()">Continue to Questionnaire →</button>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         DIY EVALUATE
+    ========================== -->
+    <section id="evaluatePage" class="page">
+
+      <div class="page-card">
+
+        <span class="section-label">IDRS Questionnaire</span>
+
+        <h1>IDRS Questionnaire</h1>
+
+        <p class="page-description">
+          These questions determine the official IDRS score.
+        </p>
+
+
+        <div class="form-group">
+
+          <label for="age">
+            Age
+          </label>
+
+          <input
+            id="age"
+            type="number"
+            min="18"
+            placeholder="Enter age"
+          />
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="sex">
+            Sex
+          </label>
+
+          <select id="sex">
+
+            <option value="">
+              Select
+            </option>
+
+            <option value="female">
+              Female
+            </option>
+
+            <option value="male">
+              Male
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="calculated-box">
+
+          <span>Waist-to-Hip Ratio</span>
+
+          <strong id="evaluateWHR">
+            —
+          </strong>
+
+          <small>
+            Calculated from your previous measurements
+          </small>
+
+        </div>
+
+
+        <div class="info-box urine-result-box">
+          <strong>Urine glucose result</strong>
+          <p id="evaluateUrine">—</p>
+          <img class="guide-urine-image" src="urine" alt="Urine glucose strip colour legend" onerror="this.onerror=null;this.src='urine.png';" />
+          <label for="questionnaireUrineResult">Compare your strip with the legend and select the closest result</label>
+          <select id="questionnaireUrineResult">
+            <option value="">Select result</option>
+            <option value="negative">Negative</option>
+            <option value="trace">Trace</option>
+            <option value="positive">Positive</option>
+            <option value="not_performed">Not performed</option>
+          </select>
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="activity">
+            Physical activity
+          </label>
+
+          <select id="activity">
+
+            <option value="">
+              Select activity level
+            </option>
+
+            <option value="vigorous">
+              Vigorous — running, fast cycling, fast swimming,
+              intense sports or heavy loads
+            </option>
+
+            <option value="moderate">
+              Moderate — brisk walking, dancing, gardening,
+              active household activities
+            </option>
+
+            <option value="light">
+              Light — slow walking, light household activities
+            </option>
+
+            <option value="sedentary">
+              Mostly sedentary — most of the day sitting or reclining
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="familyHistory">
+            Family history of diabetes
+          </label>
+
+          <select id="familyHistory">
+
+            <option value="">
+              Select
+            </option>
+
+            <option value="none">
+              Neither parent
+            </option>
+
+            <option value="one">
+              One parent
+            </option>
+
+            <option value="both">
+              Both parents
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>
+            Are you currently taking any medication?
+          </label>
+
+          <div class="radio-row">
+
+            <label>
+              <input
+                type="radio"
+                name="medication"
+                value="yes"
+                onchange="toggleMedicationBox()"
+              />
+              Yes
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="medication"
+                value="no"
+                onchange="toggleMedicationBox()"
+              />
+              No
+            </label>
+
+          </div>
+
+        </div>
+
+
+        <div id="medicationBox" class="conditional-box hidden">
+          <label>Medication category</label>
+          <div class="checkbox-list">
+            <label><input type="checkbox" value="corticosteroids" /> Corticosteroids / steroids</label>
+            <label><input type="checkbox" value="antipsychotics" /> Second-generation antipsychotics</label>
+            <label><input type="checkbox" value="diuretics" /> Thiazide diuretics</label>
+            <label><input type="checkbox" value="beta_blockers" /> Beta blockers</label>
+            <label><input type="checkbox" value="statins" /> Statins</label>
+            <label><input type="checkbox" value="immunosuppressants" /> Immunosuppressants</label>
+            <label><input type="checkbox" value="hiv_protease_inhibitors" /> HIV protease inhibitors</label>
+            <label><input type="checkbox" value="hormonal" /> Hormonal therapies / birth control</label>
+            <label><input type="checkbox" value="fluoroquinolones" /> Certain antibiotics</label>
+          </div>
+        </div>
+
+
+        <div id="sleepMedicationQuestion" class="form-group hidden">
+          <label>Are you currently taking medication specifically to help you sleep?</label>
+          <div class="radio-row">
+            <label><input type="radio" name="sleepMedication" value="yes" onchange="updateSleepQuestion()" /> Yes</label>
+            <label><input type="radio" name="sleepMedication" value="no" onchange="updateSleepQuestion()" /> No</label>
+          </div>
+        </div>
+
+
+        <div id="sleepQuestion" class="form-group hidden">
+          <label for="sleepQuality">How would you describe your sleep?</label>
+          <select id="sleepQuality">
+            <option value="">Select</option>
+            <option value="good">Good / uninterrupted</option>
+            <option value="sometimes">Sometimes disturbed</option>
+            <option value="frequently">Frequently disturbed</option>
+            <option value="difficulty">Often difficulty falling or staying asleep</option>
+          </select>
+        </div>
+
+
+        <div class="form-group">
+          <label for="bpStatus">Have you ever been told that you have high or low blood pressure?</label>
+          <select id="bpStatus" onchange="toggleBPFields()">
+            <option value="">Select</option>
+            <option value="high">High blood pressure</option>
+            <option value="low">Low blood pressure</option>
+            <option value="neither">Neither</option>
+            <option value="not_sure">Not sure</option>
+          </select>
+        </div>
+
+        <div id="bpHighFields" class="conditional-box hidden">
+          <div class="form-group">
+            <label for="bpSystolic">Most recent systolic reading (mmHg)</label>
+            <input id="bpSystolic" type="number" min="50" max="300" placeholder="e.g. 130" />
+          </div>
+          <div class="form-group">
+            <label for="bpDiastolic">Most recent diastolic reading (mmHg)</label>
+            <input id="bpDiastolic" type="number" min="30" max="200" placeholder="e.g. 80" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Are you currently taking medication specifically for blood pressure?</label>
+          <div class="radio-row">
+            <label><input type="radio" name="bpMedication" value="yes" /> Yes</label>
+            <label><input type="radio" name="bpMedication" value="no" /> No</label>
+            <label><input type="radio" name="bpMedication" value="not_sure" /> Not sure</label>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="toothMobility">Have you noticed any loosening or shaking of your teeth?</label>
+          <select id="toothMobility">
+            <option value="">Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="gumBleeding">Do you experience generalized bleeding from your gums?</label>
+          <select id="gumBleeding">
+            <option value="">Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="delayedHealing">Do you have any oral or skin wounds that are taking longer than expected to heal?</label>
+          <select id="delayedHealing">
+            <option value="">Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="nightUrination">
+            How often do you wake at night to urinate?
+          </label>
+
+          <select id="nightUrination">
+
+            <option value="">
+              Select
+            </option>
+
+            <option value="never">
+              Never
+            </option>
+
+            <option value="once">
+              Once
+            </option>
+
+            <option value="twice">
+              2 times
+            </option>
+
+            <option value="three_plus">
+              3+ times
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="hunger">
+            Do you feel hungry again soon after meals?
+          </label>
+
+          <select id="hunger">
+
+            <option value="">
+              Select
+            </option>
+
+            <option value="never">
+              Never
+            </option>
+
+            <option value="occasionally">
+              Occasionally
+            </option>
+
+            <option value="often">
+              Often
+            </option>
+
+            <option value="very_often">
+              Very often
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="frequentUrination">
+            How often do you experience frequent urination?
+          </label>
+
+          <select id="frequentUrination">
+
+            <option value="">
+              Select
+            </option>
+
+            <option value="no">
+              No
+            </option>
+
+            <option value="occasionally">
+              Occasionally
+            </option>
+
+            <option value="often">
+              Often
+            </option>
+
+            <option value="very_often">
+              Very often
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="thirst">
+            How often do you experience prolonged thirst?
+          </label>
+
+          <select id="thirst">
+
+            <option value="">
+              Select
+            </option>
+
+            <option value="no">
+              No
+            </option>
+
+            <option value="occasionally">
+              Occasionally
+            </option>
+
+            <option value="often">
+              Often
+            </option>
+
+            <option value="very_often">
+              Very often
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="smoking">
+            Smoking / tobacco use
+          </label>
+
+          <select id="smoking">
+
+            <option value="">
+              Select
+            </option>
+
+            <option value="no">
+              No
+            </option>
+
+            <option value="occasionally">
+              Occasionally
+            </option>
+
+            <option value="regularly">
+              Regularly
+            </option>
+
+            <option value="daily">
+              Daily
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="stress">
+            Current stress level
+          </label>
+
+          <select id="stress">
+
+            <option value="">
+              Select
+            </option>
+
+            <option value="low">
+              Low
+            </option>
+
+            <option value="mild">
+              Mild
+            </option>
+
+            <option value="moderate">
+              Moderate
+            </option>
+
+            <option value="high">
+              High
+            </option>
+
+            <option value="very_high">
+              Very high
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="alcohol">
+            Alcohol use
+          </label>
+
+          <select id="alcohol">
+
+            <option value="">
+              Select
+            </option>
+
+            <option value="none">
+              None
+            </option>
+
+            <option value="occasional">
+              Occasional
+            </option>
+
+            <option value="regular">
+              Regular
+            </option>
+
+            <option value="frequent">
+              Frequent
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <button
+          class="primary-button"
+          type="button"
+          onclick="submitDIYEvaluation()"
+        >
+          Continue →
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         DIY EXAMINE
+    ========================== -->
+    <section id="examinePage" class="page">
+
+      <div class="page-card">
+
+        <span class="section-label">Leg & Foot Check</span>
+
+        <h1>Leg & Foot Observation</h1>
+
+        <p class="page-description">
+          Observe the legs and feet. Do not diagnose from these findings.
+        </p>
+
+
+        <div class="checkbox-list observation-list">
+
+          <label>
+            <input
+              type="checkbox"
+              name="observations"
+              value="numbness"
+            />
+            Numbness or loss of sensation
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="observations"
+              value="tingling"
+            />
+            Tingling / pins and needles
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="observations"
+              value="burning_pain"
+            />
+            Burning or nerve-type pain
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="observations"
+              value="swelling"
+            />
+            Swelling
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="observations"
+              value="cold"
+            />
+            Cold legs or feet
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="observations"
+              value="cramps"
+            />
+            Leg cramps or pain while walking
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="observations"
+              value="skin_changes"
+            />
+            Skin changes or discoloration
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="observations"
+              value="nails"
+            />
+            Thickened or discoloured toenails
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="observations"
+              value="wound"
+            />
+            Wound, ulcer or slow-healing area
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="observations"
+              value="structural"
+            />
+            Structural or deformity changes
+          </label>
+
+          <label class="none-option">
+            <input
+              id="noneObserved"
+              type="checkbox"
+              name="observations"
+              value="none"
+              onchange="toggleNoneObserved()"
+            />
+            None observed
+          </label>
+
+        </div>
+
+
+        <div class="form-group skin-observation-question">
+          <label for="skinPatches">Have you noticed any new or unusual dark patches or spots on the skin of your legs or neck?</label>
+          <select id="skinPatches">
+            <option value="">Select</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+
+
+        <button
+          class="primary-button"
+          type="button"
+          onclick="submitDIYExamination()"
+        >
+          Continue →
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         DIABETES EDUCATION
+    ========================== -->
+    <section id="awarenessPage" class="page">
+      <div class="page-card">
+        <span class="section-label">Diabetes Education</span>
+        <h1>Everyday Health Habits</h1>
+        <p id="educationIntro" class="page-description">These are general awareness points. They do not replace personalised medical advice.</p>
+
+        <div class="education-grid">
+          <div class="education-card"><h2>🥗 Diet</h2><p>Choose a balanced and varied diet. Aim for regular meals and include a variety of vegetables, whole grains, pulses, protein sources and other nutrient-dense foods.</p></div>
+          <div class="education-card"><h2>🚶 Physical activity</h2><p>Regular physical activity helps muscles use glucose and improves insulin sensitivity. Consistency matters more than a single workout.</p></div>
+          <div class="education-card"><h2>🧠 Stress management</h2><p>Use practical ways to manage stress, protect sleep and build routines that are sustainable.</p></div>
+          <div class="education-card"><h2>⚖️ Work–life balance</h2><p>Healthy routines are easier to maintain when work, study, rest, sleep and physical activity are given reasonable space.</p></div>
+          <div class="education-card"><h2>🦶 Foot care</h2><ul><li>Check your feet regularly.</li><li>Keep them clean and dry.</li><li>Avoid walking barefoot.</li><li>Wear properly fitting footwear.</li><li>Trim toenails straight across.</li><li>Seek professional care for concerning wounds or changes.</li></ul></div>
+          <div class="education-card"><h2>🚭 Tobacco & alcohol</h2><p>Avoid tobacco. Alcohol can affect overall health and may complicate diabetes prevention or management, especially when consumed excessively.</p></div>
+          <div class="education-card"><h2>🩺 Regular health checks</h2><p>Keep up with health checks recommended for you by a healthcare professional, especially if risk factors or concerning findings are present.</p></div>
+          <div class="education-card"><h2>🔁 Consider re-screening</h2><p>After about 6 months, consider repeating a risk screening such as ABEEM or discussing an appropriate follow-up schedule with a healthcare professional, particularly if risk factors or concerning findings are present.</p></div>
+          <div class="education-card"><h2>💊 Medication</h2><p>If medicines are prescribed, take them according to your healthcare professional's instructions. Do not stop or change medication based on this screening.</p></div>
+        </div>
+
+        <button class="primary-button" type="button" onclick="goToAct()">Continue to Results →</button>
+      </div>
+    </section>
+
+
+    <!-- =========================
+         ACT / DIY RESULT
+    ========================== -->
+    <section id="actPage" class="page">
+      <div class="page-card result-page">
+        <span class="section-label">Your Result</span>
+        <h1>ABEEM Screening Result</h1>
+
+        <div id="idrsResultCard" class="result-card">
+          <span>Official IDRS Score</span>
+          <strong id="idrsScore">—</strong>
+          <small id="idrsRisk">—</small>
+        </div>
+
+        <div class="breakdown-card"><h2>Official IDRS breakdown</h2><div id="idrsBreakdown"></div></div>
+
+        <div class="additional-card"><h2>Additional findings that may need attention</h2><div id="additionalIndicators"></div></div>
+
+        <div class="result-summary-note"><strong>Remember:</strong><br />The IDRS score is kept separate from the additional findings. Additional findings do not add points to IDRS and do not diagnose diabetes.</div>
+
+        <div class="guidance-card"><h2>What this screening suggests</h2><p id="overallGuidance">—</p></div>
+
+        <div class="disclaimer"><strong>Important</strong><p>ABEEM is a screening and awareness system, not a diagnostic tool. If your score or additional findings are concerning, discuss them with a qualified healthcare professional.</p></div>
+
+        <div class="result-actions">
+          <button class="primary-button" type="button" onclick="window.print()">Print / Save Report</button>
+          <button class="primary-button" type="button" onclick="openEducation()">Diabetes Education</button>
+          <button class="secondary-button" type="button" onclick="restartScreening()">Start Again</button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- =========================================================
+         VOLUNTEER — IDRS
+    ========================================================== -->
+    <section id="volunteerIDRSPage" class="page">
+
+      <div class="page-card">
+
+        <span class="section-label">Volunteer / Camp</span>
+
+        <h1>IDRS Screening</h1>
+
+        <p class="page-description">
+          Complete the validated IDRS questions first.
+          Only these factors contribute to the official IDRS score.
+        </p>
+
+
+        <div class="form-group">
+
+          <label for="vAge">
+            Age
+          </label>
+
+          <input
+            id="vAge"
+            type="number"
+            min="18"
+            placeholder="Enter age"
+          />
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="vSex">
+            Sex
+          </label>
+
+          <select id="vSex">
+
+            <option value="">
+              Select
+            </option>
+
+            <option value="female">
+              Female
+            </option>
+
+            <option value="male">
+              Male
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="vWaist">
+            Waist circumference (cm)
+          </label>
+
+          <input
+            id="vWaist"
+            type="number"
+            min="1"
+            step="0.1"
+            placeholder="Enter waist"
+          />
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="vActivity">
+            Physical activity
+          </label>
+
+          <select id="vActivity">
+
+            <option value="">
+              Select
+            </option>
+
+            <option value="vigorous">
+              Vigorous
+            </option>
+
+            <option value="moderate">
+              Moderate
+            </option>
+
+            <option value="light">
+              Light / mild
+            </option>
+
+            <option value="sedentary">
+              Mostly sedentary
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="vFamilyHistory">
+            Family history of diabetes
+          </label>
+
+          <select id="vFamilyHistory">
+
+            <option value="">
+              Select
+            </option>
+
+            <option value="none">
+              Neither parent
+            </option>
+
+            <option value="one">
+              One parent
+            </option>
+
+            <option value="both">
+              Both parents
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <button
+          class="primary-button"
+          type="button"
+          onclick="submitVolunteerIDRS()"
+        >
+          Calculate IDRS & Continue →
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         VOLUNTEER — GLUCOMETER
+    ========================================================== -->
+    <section id="volunteerGlucosePage" class="page">
+
+      <div class="page-card">
+
+        <span class="section-label">Volunteer / Camp</span>
+
+        <h1>Blood Glucose Check</h1>
+
+        <p class="page-description">
+          Enter the glucometer result recorded by the volunteer.
+        </p>
+
+
+        <div class="form-group">
+
+          <label>
+            Was a glucometer reading taken?
+          </label>
+
+          <div class="radio-row">
+
+            <label>
+              <input
+                type="radio"
+                name="glucoseTaken"
+                value="yes"
+                onchange="toggleVolunteerGlucose()"
+              />
+              Yes
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="glucoseTaken"
+                value="no"
+                onchange="toggleVolunteerGlucose()"
+              />
+              No
+            </label>
+
+          </div>
+
+        </div>
+
+
+        <div
+          id="volunteerGlucoseInputs"
+          class="conditional-box hidden"
+        >
+
+          <div class="form-group">
+
+            <label for="vGlucoseType">
+              Reading type
+            </label>
+
+            <select id="vGlucoseType">
+
+              <option value="">
+                Select
+              </option>
+
+              <option value="fasting">
+                Fasting
+              </option>
+
+              <option value="random">
+                Random
+              </option>
+
+              <option value="two_hour">
+                2-hour after meal
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <div class="form-group">
+
+            <label for="vGlucoseValue">
+              Blood glucose (mg/dL)
+            </label>
+
+            <input
+              id="vGlucoseValue"
+              type="number"
+              min="0"
+              step="1"
+              placeholder="Enter reading"
+            />
+
+          </div>
+
+        </div>
+
+
+        <div class="cutoff-info">
+
+          <h3>Screening reference</h3>
+
+          <p>
+            Fasting ≥126 mg/dL, random ≥200 mg/dL, or
+            2-hour ≥200 mg/dL is flagged as a high-glucose
+            screening indicator.
+          </p>
+
+          <small>
+            This does not diagnose diabetes.
+          </small>
+
+        </div>
+
+
+        <button
+          class="primary-button"
+          type="button"
+          onclick="submitVolunteerGlucose()"
+        >
+          Continue →
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         VOLUNTEER — URINE
+    ========================================================== -->
+    <section id="volunteerUrinePage" class="page">
+
+      <div class="page-card">
+
+        <span class="section-label">Volunteer / Camp</span>
+
+        <h1>Urine Glucose Screening</h1>
+
+        <p class="page-description">
+          Record the urine strip result.
+        </p>
+
+
+        <div class="form-group">
+
+          <label for="vUrineResult">
+            Urine glucose strip result
+          </label>
+
+          <select id="vUrineResult">
+
+            <option value="">
+              Select result
+            </option>
+
+            <option value="negative">
+              Negative
+            </option>
+
+            <option value="trace">
+              Trace
+            </option>
+
+            <option value="positive">
+              Positive
+            </option>
+
+            <option value="not_performed">
+              Not performed
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="info-box">
+
+          <strong>Important</strong>
+
+          <p>
+            Urine glucose is an additional screening indicator.
+            It is not added to the official IDRS score.
+          </p>
+
+        </div>
+
+
+        <button
+          class="primary-button"
+          type="button"
+          onclick="submitVolunteerUrine()"
+        >
+          Continue →
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         VOLUNTEER — ANKLE
+    ========================================================== -->
+    <section id="volunteerAnklePage" class="page">
+
+      <div class="page-card">
+
+        <span class="section-label">Volunteer / Camp</span>
+
+        <h1>Ankle Measurement</h1>
+
+        <p class="page-description">
+          Record the ankle measurement taken during the screening.
+        </p>
+
+
+        <div class="form-group">
+
+          <label for="vAnkle">
+            Ankle measurement (cm)
+          </label>
+
+          <input
+            id="vAnkle"
+            type="number"
+            min="0"
+            step="0.1"
+            placeholder="Enter measurement"
+          />
+
+        </div>
+
+
+        <div class="info-box">
+
+          <strong>Recorded separately</strong>
+
+          <p>
+            This measurement is recorded as additional screening
+            information and is not added to the official IDRS score.
+          </p>
+
+        </div>
+
+
+        <button
+          class="primary-button"
+          type="button"
+          onclick="submitVolunteerAnkle()"
+        >
+          Continue →
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         VOLUNTEER — FOOT / LEG
+    ========================================================== -->
+    <section id="volunteerFootPage" class="page">
+
+      <div class="page-card">
+
+        <span class="section-label">Volunteer / Camp</span>
+
+        <h1>Leg & Foot Observation</h1>
+
+        <p class="page-description">
+          Select any visible or reported findings.
+        </p>
+
+
+        <div class="checkbox-list observation-list">
+
+          <label>
+            <input
+              type="checkbox"
+              name="vFootObservations"
+              value="numbness"
+            />
+            Numbness or loss of sensation
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="vFootObservations"
+              value="tingling"
+            />
+            Tingling / pins and needles
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="vFootObservations"
+              value="burning_pain"
+            />
+            Burning or nerve-type pain
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="vFootObservations"
+              value="swelling"
+            />
+            Swelling
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="vFootObservations"
+              value="cold"
+            />
+            Cold legs or feet
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="vFootObservations"
+              value="cramps"
+            />
+            Leg cramps or pain while walking
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="vFootObservations"
+              value="skin_changes"
+            />
+            Skin changes or discoloration
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="vFootObservations"
+              value="nails"
+            />
+            Thickened or discoloured toenails
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="vFootObservations"
+              value="wound"
+            />
+            Wound, ulcer or slow-healing area
+          </label>
+
+          <label>
+            <input
+              type="checkbox"
+              name="vFootObservations"
+              value="structural"
+            />
+            Structural or deformity changes
+          </label>
+
+          <label class="none-option">
+
+            <input
+              id="vNoneObserved"
+              type="checkbox"
+              name="vFootObservations"
+              value="none"
+              onchange="toggleVolunteerNoneObserved()"
+            />
+
+            None observed
+
+          </label>
+
+        </div>
+
+
+        <button
+          class="primary-button"
+          type="button"
+          onclick="submitVolunteerFoot()"
+        >
+          Continue →
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         VOLUNTEER — FOOT CARE
+    ========================================================== -->
+    <section id="volunteerFootCarePage" class="page">
+
+      <div class="page-card">
+
+        <span class="section-label">Volunteer / Camp</span>
+
+        <h1>Foot Care Awareness</h1>
+
+        <p class="page-description">
+          This question is compulsory and is recorded separately
+          from the IDRS score.
+        </p>
+
+
+        <div class="required-question">
+
+          <label for="vFootCare">
+            Does the participant regularly follow basic foot-care practices?
+            <span class="required">*</span>
+          </label>
+
+          <select id="vFootCare">
+
+            <option value="">
+              Select one
+            </option>
+
+            <option value="yes">
+              Yes — regularly follows them
+            </option>
+
+            <option value="partly">
+              Partly — follows some practices
+            </option>
+
+            <option value="no">
+              No — does not regularly follow them
+            </option>
+
+            <option value="not_sure">
+              Not sure
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="info-box">
+
+          <strong>Foot-care awareness</strong>
+
+          <p>
+            Basic foot care includes regular observation,
+            appropriate footwear and seeking professional care
+            for concerning changes.
+          </p>
+
+        </div>
+
+
+        <button
+          class="primary-button"
+          type="button"
+          onclick="submitVolunteerFootCare()"
+        >
+          View Screening Result →
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================================================
+         VOLUNTEER RESULT
+    ========================================================== -->
+    <section id="volunteerResultPage" class="page">
+
+      <div class="page-card result-page">
+
+        <span class="section-label">Volunteer / Camp</span>
+
+        <h1>Screening Result</h1>
+
+
+        <div
+          id="volunteerIDRSCard"
+          class="result-card"
+        >
+
+          <span>Official IDRS Score</span>
+
+          <strong id="volunteerIDRSScore">
+            —
+          </strong>
+
+          <small id="volunteerIDRSRisk">
+            —
+          </small>
+
+        </div>
+
+
+        <div class="breakdown-card">
+
+          <h2>IDRS Breakdown</h2>
+
+          <div id="volunteerIDRSBreakdown"></div>
+
+        </div>
+
+
+        <div class="additional-card">
+
+          <h2>Additional Screening Indicators</h2>
+
+          <div id="volunteerAdditionalIndicators"></div>
+
+        </div>
+
+
+        <div class="guidance-card">
+
+          <h2>ABEEM Guidance</h2>
+
+          <p id="volunteerGuidance">
+            —
+          </p>
+
+        </div>
+
+
+        <div class="disclaimer">
+
+          <strong>Important</strong>
+
+          <p>
+            This screening does not diagnose diabetes. The official
+            IDRS score is calculated separately from blood glucose,
+            urine results, ankle measurements and foot observations.
+            Concerning findings should be referred to a qualified
+            healthcare professional.
+          </p>
+
+        </div>
+
+
+        <div class="result-actions">
+
+          <button
+            class="primary-button"
+            type="button"
+            onclick="window.print()"
+          >
+            Print / Save Report
+          </button>
+
+          <button
+            class="secondary-button"
+            type="button"
+            onclick="restartScreening()"
+          >
+            Start Again
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </div>
+
+
+  <script src="./script2.js"></script>
+
+</body>
+</html>
