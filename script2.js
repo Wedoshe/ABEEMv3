@@ -2897,26 +2897,15 @@ function renderOverallGuidance(
   }
 
 
-  if (
-    score >= 30 ||
-    additionalCount === 1
-  ) {
+if (score > 50) {
+  return `Your official IDRS score is ${score}/100. IMMEDIATE BLOOD TESTING AND SEEKING HEALTHCARE PROFESSIONAL ADVICE IS ADVISED.`;
+}
 
-    return (
-      `Your official IDRS score is ${score}/100. ` +
-      `Some risk or additional screening findings were reported. ` +
-      `Consider discussing the findings with a qualified healthcare professional.`
-    );
+if (score >= 30) {
+  return `Your official IDRS score is ${score}/100. Further laboratory testing is advised, and seeking advice from a qualified healthcare professional would be best.`;
+}
 
-  }
-
-
-  return (
-    `Your official IDRS score is ${score}/100. ` +
-    `No major additional screening indicators were identified ` +
-    `from the information entered. Continue healthy habits and ` +
-    `follow recommended routine health checks.`
-  );
+return `Your official IDRS score is ${score}/100. Your current IDRS score is in the lower-risk range. Continue a healthy lifestyle, repeat diabetes risk screening every 6 months, and go through the Diabetes Education section using the button below.`;
 
 }
 
