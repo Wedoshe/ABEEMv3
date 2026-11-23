@@ -413,8 +413,22 @@ select:focus {
   text-align: center;
   padding: 28px;
   border-radius: 20px;
-  background: #e6f2e9;
   margin: 20px 0;
+}
+
+.result-card.clear {
+  background: #e7f4e9;
+  border: 2px solid #4d9b62;
+}
+
+.result-card.present {
+  background: #fff0dd;
+  border: 2px solid #d69a3a;
+}
+
+.result-card.warning {
+  background: #fde4e0;
+  border: 2px solid #c95748;
 }
 
 .result-card span {
