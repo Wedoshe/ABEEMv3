@@ -2800,20 +2800,20 @@ function collectDIYAdditionalIndicators() {
 
   else {
 
-    indicators.push({
+  indicators.push({
 
-      label:
-        "Leg / foot observations",
+    label:
+      "Leg / foot observations",
 
-      value:
-        "None observed",
+    value:
+      "None observed",
 
-      level:
-        "clear"
+    level:
+      "clear"
 
-    });
+  });
 
-  }
+}
 
 
   /* MEDICATION */
