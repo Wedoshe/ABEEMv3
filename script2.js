@@ -2304,8 +2304,7 @@ function submitDIYExamination() {
   abeemData.skinPatches =
     skinPatches;
 
-
-  openEducation();
+  goToAct();
 
 }
 
